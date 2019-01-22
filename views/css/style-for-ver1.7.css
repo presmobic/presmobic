@@ -1,0 +1,77 @@
+/**
+ * 2017-2019 Buy Addons Team
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the GNU General Public License version 3
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://www.opensource.org/licenses/gpl-3.0.html
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@buy-addons.com so we can send you a copy immediately.
+*
+* @author Buy Addons Team <hatt@buy-addons.com>
+* @copyright  2017-2019 Buy Addons Team
+* @license   http://www.opensource.org/licenses/gpl-3.0.html  GNU General Public License version 3
+* International Registered Trademark & Property of Buy Addons Team
+*/
+.payment-options{
+    padding: 13px;
+    background-color: #fff;
+}
+.payment-options .payment-items{
+    padding: 10px 0;
+}
+.payment-options .payment-items >div{
+    display: -webkit-inline-box;
+}
+.selected-payment-mobi{
+    margin-bottom: 10px;
+    background: #ff1d4b;
+    padding: 10px 0px;
+    color: #fff !important;
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+    text-shadow: none;
+    font-size: 13px;
+    text-transform: uppercase;    
+    height: auto !important;
+}
+.payment-options .definition-list dl{
+    //display: block;
+}
+.payment-options .definition-list dl dd,
+.payment-options .definition-list dl dt{
+    flex: 0 0 calc(50% - 12px);
+    padding: 10px 5px;
+    margin: 2px auto;
+    display: block;
+}
+.payment-options .definition-list dl dd{
+    margin-left: 2px;
+}
+.payment-options .definition-list dl dt{
+    margin-right: 2px;
+}
+.payment-options .custom-radio{
+    display: inline-block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid #90949c;
+    background: #fff;
+    margin-right: 1.25rem;
+}
+.payment-options .custom-radio input[type=radio]:checked+span{
+    width: 16px;
+    height: 16px;
+}
+.payment-options .js-additional-information{
+    padding: 0 13px;
+    color: #8a8a8a;
+}

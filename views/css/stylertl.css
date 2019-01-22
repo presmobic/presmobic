@@ -1,0 +1,438 @@
+/**
+ * 2017-2019 Buy Addons Team
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the GNU General Public License version 3
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://www.opensource.org/licenses/gpl-3.0.html
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@buy-addons.com so we can send you a copy immediately.
+*
+* @author Buy Addons Team <hatt@buy-addons.com>
+* @copyright  2017-2019 Buy Addons Team
+* @license   http://www.opensource.org/licenses/gpl-3.0.html  GNU General Public License version 3
+* International Registered Trademark & Property of Buy Addons Team
+*/
+*,.lang-rtl *{
+	direction: inherit !important;
+}
+input{
+    direction: rtl !important;
+    text-align: right !important;
+}
+.total_c{
+	direction: rtl !important;
+}
+#about{
+    box-sizing: border-box;
+}
+/* Home */
+.cart_checkout,
+.home-slider *{
+	direction: ltr !important;
+}
+.content-latest-2,
+.td_our_category,
+.ourcategory-content,
+.td_title_frature_brands,
+.td_feature,
+.presmobile-mewletter-block .td_footer_title .mewletter-email
+{
+	direction: rtl !important;
+}
+.btn_cart_attr,
+.td_feature_children{
+	float: right;
+}
+.presmobile-mewletter-block .td_footer_title{
+	text-align: right;
+}
+.presmobile-mewletter-block .td_footer_title .mewletter-email{
+	text-align: right;
+}
+.btn_cart{
+	direction: ltr !important;
+	float: right;
+    text-align: left
+}
+.tree-category{
+	float: right;
+    margin-left: 10px;
+}
+.icon-cart_pl{
+	float: left;
+}
+/* detail */
+.robb_product_price >span,
+.content-Detail .robb-size-val .robb-size-value,
+.content-Detail .robb-color-val .color-value,
+.PresMobileproduct-rating .ui-block-a > div,
+.PresMobilecomment-popup .ui-content .comment-rating span,
+.PresMobilecomment-popup .ui-content .comment-rating .stars-rating{
+	float: right !important;
+}
+.robb_product_price >span,.content-Detail .robb-color-val .color-value{
+	margin-right: 0px !important;
+    margin-left: 15px;
+}
+.product-attribute,
+.content-Detail .PresMobileproduct-rating,
+.content-Detail .PresMobileproduct-quatity,
+.content-Detail .PresMobileproduct-description,
+.content-Detail .PresMobileabout-product,
+.content-Detail .product-name,
+.content-Detail .PresMobileproduct-protection,
+.PresMobileproduct-hook-detail,
+#PresMobil-add-comment,
+.content-comment{
+	direction: rtl !important;
+}
+.content-Detail .PresMobileproduct-quatity .box-quantity{
+	display: -webkit-box;
+}
+.content-Detail .PresMobileproduct-quatity .box-quantity div, .content-Detail .PresMobileproduct-quatity .fa{
+	float: none!important;
+}
+.content-Detail .PresMobileproduct-quatity .box-quantity input[type="number"]{
+	text-align: center !important;
+}
+.Presmobile-select-popup{
+	direction: rtl !important;
+}
+.Presmobile-select-popup-block .choose-address{
+	float: right;
+    margin-right: 0;
+    margin-left: 10px;
+}
+.td_product_detail_instock{
+	right: 5px;
+}
+.td_product_detail_instock::before{
+	border-left: 10px solid transparent;
+    border-right: 0px solid transparent;
+    left:-9px;
+    right: inherit;
+}
+.td_product_detail_instock::after{
+    right: inherit;
+    left:-9px;
+    border-left: 10px solid transparent;
+    border-right: 0px solid transparent;
+}
+.content-Detail .product-attribute .attribute-type-select .selected_attribute{
+    padding-right: 0.5em;
+    padding-left: 2em;
+}
+.content-Detail .PresMobileproduct-images{
+	direction: ltr !important;
+}
+.content-Detail .PresMobileproduct-images .td_sale_off_product_detail{
+	left: unset;
+	right: 5px;
+	direction: rtl !important;
+}
+.content-Detail .PresMobileproduct-quatity .box-quantity label{
+	margin-right: 10px;
+}
+.td_footer_product_detail .footer-detail-boxcomment span.fa{
+	direction: ltr !important;
+}
+.content-Detail .PresMobileproduct-images .td_wislist_product_detail{
+    right: unset;
+    left: 15%;
+}
+.content-Detail .PresMobileproduct-images .td_love_product_detail{
+    right: unset;
+    left: 5%;
+}
+/* category */
+.td_sub_category_tab_category,
+#category .content-category .content-product-1 .ui-grid-a .ui-block-b,
+.description_product,
+#category .content-category>.r-filter div>div>p{
+	direction: rtl !important;
+}
+.premobile-category-search .ui-grid-a .td_checkbox_tab_category label.container label{
+    padding-right: 25px;
+    direction: rtl !important;
+}
+#category .content-category .premobile-category-search .checkmark{
+	right: 0;
+    left: inherit;	
+}
+.PresMobileproduct-rating>div >div{
+	float: right !important;
+}
+#category .content-category .robb-category-sort,
+.block-rangeprice >div:nth-last-child(2){
+	direction: rtl !important;
+}
+#category .content-category .robb-category-sort .td_category_tab_item_sort{
+    margin-left: 0 !important;
+    margin-right: 20px;
+}
+#category .content-category .robb-category-sort span i{
+	right: 4px;
+	left: inherit;
+}
+#category .content-category>.r-filter div>div >.fa{
+	float:left !important;
+}
+.block-rangeprice >div:nth-last-child(2),
+.block-rangeprice p{
+	float: right !important;
+}
+.content-category .presmobile-category-filter-fixed .ui-block-d{
+	direction: ltr !important;
+}
+/* search */
+.clear-search-icon{
+	right: inherit;
+	left: 5px;
+}
+/* cart */
+.td_product_detail_togetther_right_quantity_num{
+	text-align: center !important;
+}
+.content-cart .PresMobileblock-cart-empity .PresMobileshopnow-button, 
+.content-order .PresMobileorder-content .PresMobileblock-order-empity .PresMobileshopnow-button,
+.presmobile-rmpro-popup,
+.td_cart_product_right,
+.td_cart_product_name,
+.PresMobilecheckout-address.premobile-checkout-box-top{
+	direction: rtl !important;
+}
+.premobile-checkout-box-top .PresMobilefiled-select::after{
+	left: 5px;
+	right: inherit;
+	transform: rotate(135deg);
+}
+.stateschecked{
+	left: 0;
+	right: inherit;
+}
+.td_cart_product_quantity{
+	position: relative !important;
+}
+.td_cart_product_right_left{
+	width: 90%;
+}
+.td_cart_product_right > div{
+	width: 90% !important;
+}
+.td_cart_bottom > div > div{
+	direction: rtl !important;
+}
+.td_cart_bottom .appendcoupon div div:first-child,
+.td_cart_bottom > div > div:first-child{
+	float: right !important;
+}
+.td_cart_bottom .appendcoupon div div:last-child,
+.td_cart_bottom > div > div:last-child{
+	float: left !important;
+}
+.td_cart_bottom .appendcoupon div div:last-child p{
+    direction: rtl !important !important;
+}
+.td_cart_bottom .appendcoupon .icon-icondetele{
+	left: -20px !important;
+    float: left !important;
+}
+.td_cart_bottom .appendcoupon div:first-child div p{
+	direction: ltr !important;
+}
+/* my account */
+.header-account,
+.content-account .account-pages{
+	direction: rtl !important;
+}
+.content-account .account-pages .ui-grid-a .ui-block-a,
+.content-account .account-pages .ui-grid-a .ui-block-b,
+.content-account .account-pages .ui-block-a span{
+	float: right;
+}
+.content-account .account-pages .ui-block-b p{
+	float: left;	
+}
+.content-account .account-pages .ui-block-a span:nth-child(2){
+	margin-right: 14px;
+    margin-left: 0;
+}
+.content-account .account-pages .tg-list{
+	width: 30%;
+}
+.content-account .account-pages .tg-list div{
+	width: 100%;
+}
+.content-account .account-pages .Presmobile-select-popup .ui-block-a,
+.content-account .account-pages .Presmobile-select-popup .ui-block-b{
+	float: left
+}
+/* my address */
+.Presmobile-myaddress{
+	direction: rtl !important;
+}
+.Presmobile-myaddress-block-check span:last-child{
+    padding-right: 21px;
+}
+.Presmobile-myaddress .premobile-detail-head i{
+	float: left;
+	margin-left: -2em;
+}
+/* shipping */
+.premobile-detail-content,
+.terms-conditions{
+	direction: rtl !important;
+}
+.method-check>.primobile-shipping{
+	left: 13px;
+	right: inherit;
+}
+.premobile-checkout-cart .terms-conditions .terms-conditions-link{
+	margin-left: 0;
+	margin-right: 30px;
+}
+.premobile-detail-content .total-detail ul li .value{
+	float: left;
+}
+.premobile-detail-content .total-detail ul li .title{
+	float: right;
+}
+/* order */
+.premobile-checkout-cart .box-title{
+	text-align: left;
+}
+.premobile-checkout-cart .box-shipping-title::before{
+	display: inline;
+}
+.PresMobileorder-content{
+	direction: rtl !important;
+}
+.content-order .PresMobileorder-content .PresMobileblock-order ul.lists-order li.block-order .order-id .order-title,
+.content-order .PresMobileorder-content .PresMobileblock-order ul.lists-order li.block-order .order-id .order-status{
+	float: right;
+}
+.content-order .PresMobileorder-content .PresMobileblock-order ul.lists-order li.block-order .order-id .order-status{
+	margin-left:0;
+	margin-right: 1em;
+}
+.content-order .PresMobileorder-content .PresMobileblock-order ul.lists-order li.block-order .order-id .order-status >i{
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+   	left: inherit;
+    right: -4px;
+}
+.content-order .PresMobileorder-content .PresMobileblock-order ul.lists-order li.block-order a.order-detail{
+	left: 0;
+	right: inherit;
+}
+.order-id-detail .order-status{
+    left: inherit;
+    right: 0;
+    padding-right: 1em;
+    padding-left: 25px;
+}
+.order-id-detail .order-status:after{
+    width: 20px;
+    position: absolute;
+    height: 110%;
+    top: 0;
+    left: -10px;
+    right: unset;
+    transform: skewX(30deg);
+}
+.content-order .PresMobileorder-content .PresMobileblock-order ul.lists-order li.block-order>label{
+	text-align: right;
+}
+.order-id-detail .rmaslip-block .popup-choose-merchandise .Presmobile-select-popup-block .Presmobile-select-popup-header i{
+	right: unset;
+    left: 0;
+}
+.content-ordermessenger .PresMobileorder-messenger-block-top .producttomessenger .title-producttomessenger{
+    margin-left: unset;
+    margin-right: 30px;
+}
+/* favorite and wishlist*/
+.content-favorite,
+.content-wishlist,
+.content-mywishlistbyid{
+	direction: rtl !important;
+}
+.content-wishlist .prestashop-mylist-wishlists li.wishlists_item .ui-grid-a:last-child label{
+	margin-left: 0;
+    margin-right: 25px;
+}
+.content-mywishlistbyid .PresMobile-wishlist-content-top .permalink-sendandcopy .permalink-send,
+.content-wishlist .prestashop-mylist-wishlists li.wishlists_item .ui-grid-a:nth-last-child(2) span{
+	margin-right: 0;
+    margin-left: 10px;
+}
+.content-mywishlistbyid .PresMobile-wishlist-content-second .wishlist-product-box .PresMobile-wishlist-quantity li{
+	margin-right: 0;
+	margin-left: 5px;
+}
+.content-mywishlistbyid .PresMobile-wishlist-content-second .wishlist-product-box .PresMobile-wishlist-quantity li input{
+	text-align: center !important;
+}
+.content-mywishlistbyid .PresMobile-wishlist-content-second .images-wishlist-box .box-icontrash{
+	direction: ltr !important;
+}
+/* merchandisereturns, creditsslips, vouchers, my address by custustomer */
+.content-merchandisereturns, .content-creditslips, .content-myvouchers,.content-myaddressbycustomer{
+	direction: rtl !important;
+}
+.grid-myaddressbycustomer .presmobile-myaddcustom-lastname .edit-delete-customname,
+.grid-myaddressbycustomer .presmobile-myaddcustom-lastname h4{
+	float: right;
+}
+.grid-myaddressbycustomer .presmobile-myaddcustom-lastname .edit-delete-customname{
+	text-align: left;
+}
+.grid-myaddressbycustomer .presmobile-myaddcustom-lastname .edit-delete-customname span:last-child {
+    margin-right: -11px;
+    margin-left: -11px;
+}
+.presmobile-addnewcustomer-address .icon-addnew-address{
+	margin-right: 0;
+	margin-left: 10px;
+}
+/* profile */
+#profile .PresMobileprofile-content .PresMobileprofile-text{
+	direction: rtl !important;
+}
+.Presmobile-myaddress-block-check span:last-child{
+	padding-left: 0!important;
+}
+/* contact and about and privacypolicy and termsofuse*/
+.content-contact,
+.content-about,
+.content-privacypolicy,
+.content-termsofuse{
+	direction: rtl !important;
+}
+.td_contact_us .select-subject-heading:after, .content-Detail .product-attribute .attribute-type-select:after{
+	left: 5px;
+	right: inherit;
+	transform: rotate(135deg);
+}
+.button-submit-contact{
+	float: left !important;
+}
+/* login and signup */
+.content-login .PresMobilebox-content,
+.content-signup .PresMobilesignup-content,
+.content-login .PresMobileforgot-pu .PresMobilepopup-content{
+	direction: rtl !important;
+}
+.content-login .PresMobileforgot-pu .close{
+	right: inherit;
+	left: 2px;
+}
+.profile-box .birth-day li, .PresMobilesignup-content .birth-day li{
+	margin-right: 0;
+    margin-left: 5%;
+}
