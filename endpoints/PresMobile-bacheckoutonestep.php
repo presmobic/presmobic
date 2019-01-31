@@ -124,6 +124,14 @@ class BacheckoutOneStep extends PresMobileApp
         $sql_meta .= "AND id_shop=".(int)$id_shop." AND id_meta=24";
         $db_meta = $db->Executes($sql_meta);
         $checkterm  = Configuration::get('PS_CONDITIONS');
+        if (Tools::version_compare(_PS_VERSION_, '1.7.0', '>=') && Tools::version_compare(_PS_VERSION_, '1.7.4', '<')) {
+            $hook_displayBeforeCarrier = $core->mobiexec172('displayBeforeCarrier', array());
+        } elseif (Tools::version_compare(_PS_VERSION_, '1.7.4', '>=')) {
+            $hook_displayBeforeCarrier = $core->mobiexec17('displayBeforeCarrier', array());
+        } else {
+            $hook_displayBeforeCarrier = $core->mobiexec('displayBeforeCarrier', array());
+        }
+        $context->smarty->assign("hook_displayBeforeCarrier", $hook_displayBeforeCarrier);
         $context->smarty->assign("checkterm", $checkterm);
         $context->smarty->assign("check_address", $check_address);
         $context->smarty->assign("minium_price", $minium_price);

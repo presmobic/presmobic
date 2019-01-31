@@ -44,8 +44,12 @@ class BaComment extends PresMobileApp
             $query = "SELECT *FROM " . _DB_PREFIX_ . "product_comment WHERE validate='1'";
             $query .= " ORDER BY id_product_comment DESC LIMIT 0,3";
             $param = $db->ExecuteS($query);
-        } else {
-            return '';
+        }
+        if (Tools::version_compare(_PS_VERSION_, '1.7.0', '>=')) {
+            $db = Db::getInstance(_PS_USE_SQL_SLAVE_);
+            $query = "SELECT *FROM " . _DB_PREFIX_ . "ba_mobic_comment WHERE validate='0'";
+            $query .= " ORDER BY id_product_comment DESC LIMIT 0,3";
+            $param = $db->ExecuteS($query);
         }
         if (empty($param)) {
             return '';

@@ -575,7 +575,7 @@ class BaCore extends PresMobileApp
                 </span>'.$display.'</div>';
     }
     private static function getHookRegistry()
-    {   
+    {
         //SymfonyContainer::getInstance() Only use this function in Prestashop 1.7.x+
         $sfContainer = SymfonyContainer::getInstance();
         if (!is_null($sfContainer) && "dev" === $sfContainer->getParameter('kernel.environment')) {

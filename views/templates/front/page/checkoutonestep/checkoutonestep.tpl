@@ -345,6 +345,7 @@
 		</div>
 	</div>
 	<div class="premobile-checkout-cart-detail prmobile-shipping-detail">
+		{$hook_displayBeforeCarrier nofilter} {* no escape necessary *}
 		<div class="premobile-detail-content">
 			<ul class="premobile-list-shipping-method">
 				{$i = 0}

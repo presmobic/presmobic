@@ -48,8 +48,14 @@
 			</div>
 			<div class="form-group checkout-address-field PresMobilefiled-select">
 				<label class="PresMobiletitle PresMobiletitle-none" onclick="PresMoblieCheckOutShow(this)">{l s='Country' mod='presmobileapp'} *</label>
-				<input type="text" name="country" class="txt-checkout text-state-2 txt-address txt-delivery-address" onclick="PresMoblieCheckOutShow(this)" readonly="readonly" value="{if !empty($localtion['countries'][$delivery[0]['id_country']])}{$localtion['countries'][$delivery[0]['id_country']]['name']|escape:'htmlall':'UTF-8'}{else}{$localtion['countries'][$id_country_default]['name']|escape:'htmlall':'UTF-8'}{/if}" onkeyup="PresMobileCheckOutAddressCheckFields()">
-				<input type="hidden" name="idcountry" class="presmobile-idstate_2" value="{if !empty($localtion['countries'][$delivery[0]['id_country']])}{$delivery[0]['id_country']|escape:'htmlall':'UTF-8'}{else}{$id_country_default|escape:'htmlall':'UTF-8'}{/if}">
+				<input type="text" name="country" class="txt-checkout text-state-2 txt-address txt-delivery-address" onclick="PresMoblieCheckOutShow(this)" readonly="readonly" value="{if isset($localtion['countries'][$delivery[0]['id_country']])}{if isset($localtion['countries'][$delivery[0]['id_country']]['name'])}{$localtion['countries'][$delivery[0]['id_country']]['name']|escape:'htmlall':'UTF-8'}{/if}{else}{if isset($localtion['countries'][$id_country_default]['name'])}{$localtion['countries'][$id_country_default]['name']|escape:'htmlall':'UTF-8'}{/if}{/if}" onkeyup="PresMobileCheckOutAddressCheckFields()">
+				<input type="hidden" name="idcountry" class="presmobile-idstate_2" value="{if isset($localtion['countries'][$delivery[0]['id_country']])}
+				{if isset($delivery[0]['id_country'])}
+				{$delivery[0]['id_country']|escape:'htmlall':'UTF-8'}
+				{/if}
+				{else}
+				{$id_country_default|escape:'htmlall':'UTF-8'}
+				{/if}">
 				<div class="list-state">
 					<div class="state-bg" onclick="PresMobileCheckOutAddressCanel()"></div>
 					<div class="state-conditions-block">
@@ -57,7 +63,7 @@
 							<h4>{l s='Country' mod='presmobileapp'} *</h4>
 						</div>
 						<ul class="state-content">
-							{if !empty($localtion['countries'])}
+							{if isset($localtion['countries'])}
 							{foreach from=$localtion['countries'] key=key item=item}
 							<li class="state-checked state-checked-{$key|escape:'htmlall':'UTF-8'}" onclick="PresMobileCheckOutAddressChecked({$key|escape:'htmlall':'UTF-8'},'{$item['name']|escape:'htmlall':'UTF-8'}',2)" val="{$item['name']|escape:'htmlall':'UTF-8'}">{$item['name']|escape:'htmlall':'UTF-8'}
 								<div class="checkeds-2"></div>
@@ -80,10 +86,19 @@
 				<label class="PresMobiletitle" onclick="PresMobileClickToAddressFieldTitle(this)">{l s='Zip/ Postal Code' mod='presmobileapp'} *</label>
 				<input type="text" name="postal" class="txt-checkout txt-address txt-delivery-address" onfocus="PreMobileInputFieldTransitionFocus(this)" onblur="PreMobileInputFieldTransitionUnfocus(this)" required="" value="{$delivery[0]['postcode']|escape:'htmlall':'UTF-8'}" onkeyup="PresMobileCheckOutAddressCheckFields()">
 			</div>
-			<div class="form-group checkout-address-field PresMobilefiled-select address-states" style="{if empty($localtion['states'][$delivery[0]['id_country']])}display: none;{/if}">
+			<div class="form-group checkout-address-field PresMobilefiled-select address-states" style="{if isset($localtion['states'][$delivery[0]['id_country']])}display: none;{/if}">
 				<label class="PresMobiletitle PresMobiletitle-none PresMobile-state-title" onclick="PresMoblieCheckOutShow(this)">{l s='State' mod='presmobileapp'} *</label>
-				<input type="text" name="delivery_state" class="txt-checkout text-state-1 txt-address" onclick ="PresMoblieCheckOutShow(this)" required="" readonly="readonly" value="{if !empty($localtion['states'][$delivery[0]['id_country']][$delivery[0]['id_state']])}{$localtion['states'][$delivery[0]['id_country']][$delivery[0]['id_state']]['name']|escape:'htmlall':'UTF-8'}{/if}">
-				<input type="hidden" name="idsates" class="presmobile-idstate_1 txt-delivery-address" value="{if !empty($localtion['states'][$delivery[0]['id_country']][$delivery[0]['id_state']])}{$delivery[0]['id_state']|escape:'htmlall':'UTF-8'}{else}0{/if}">
+				<input type="text" name="delivery_state" class="txt-checkout text-state-1 txt-address" onclick ="PresMoblieCheckOutShow(this)" required="" readonly="readonly" value="{if isset($localtion['states'][$delivery[0]['id_country']][$delivery[0]['id_state']])}
+				{if isset($localtion['states'][$delivery[0]['id_country']][$delivery[0]['id_state']]['name'])}
+				{$localtion['states'][$delivery[0]['id_country']][$delivery[0]['id_state']]['name']|escape:'htmlall':'UTF-8'}
+				{/if}
+				{/if}">
+				<input type="hidden" name="idsates" class="presmobile-idstate_1 txt-delivery-address" value="{if isset($localtion['states'][$delivery[0]['id_country']][$delivery[0]['id_state']])}
+				{if isset($delivery[0]['id_state'])}
+				{$delivery[0]['id_state']|escape:'htmlall':'UTF-8'}
+				{/if}
+				{else}0
+				{/if}">
 				<div class="list-state">
 					<div class="state-bg" onclick="PresMobileCheckOutAddressCanel()"></div>
 					<div class="state-conditions-block">
@@ -91,18 +106,20 @@
 							<h4>{l s='State' mod='presmobileapp'} *</h4>
 						</div>
 						<ul class="state-content state-content-1">
-							{if !empty($localtion['states'][$delivery[0]['id_country']])}
+							{if isset($localtion['states'][$delivery[0]['id_country']])}
 							{foreach from=$localtion['states'][$delivery[0]['id_country']] key=key item=item}
 							<li class="state-checked state-checked-{$key|escape:'htmlall':'UTF-8'}" onclick="PresMobileCheckOutAddressChecked({$key|escape:'htmlall':'UTF-8'},'{$item['name']}',1)" val="{$item['name']|escape:'htmlall':'UTF-8'}">{$item['name']|escape:'htmlall':'UTF-8'}
 								<div class="checkeds-1"></div>
 							</li>
 							{/foreach}
 							{else}
+							{if isset($localtion['states'][$id_country_default])}
 							{foreach from=$localtion['states'][$id_country_default] key=key item=item}
 							<li  class="state-checked state-checked-{$key|escape:'htmlall':'UTF-8'}" onclick="PresMobileCheckOutAddressChecked({$key|escape:'htmlall':'UTF-8'},'{$item['name']}',1)" val="{$item['name']|escape:'htmlall':'UTF-8'}">{$item['name']|escape:'htmlall':'UTF-8'}
 								<div class="checkeds-1"></div>
 							</li>
 							{/foreach}
+							{/if}
 							{/if}
 						</ul>
 						<div class="ui-grid-a state-conditions-footer">

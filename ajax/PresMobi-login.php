@@ -83,11 +83,11 @@ $login = array(
     )
 );
 if (Tools::version_compare(_PS_VERSION_, '1.7.0', '>=') && Tools::version_compare(_PS_VERSION_, '1.7.4', '<')) {
-    $presmobicBeforeSubmitLogin = $core->mobiexec172('presmobicBeforeSubmitLogin', array(), $login);
+    $presmobicBeforeSubmitLogin = $core->mobiexec172('presmobicBeforeSubmitLogin', $login);
 } elseif (Tools::version_compare(_PS_VERSION_, '1.7.4', '>=')) {
-    $presmobicBeforeSubmitLogin = $core->mobiexec17('presmobicBeforeSubmitLogin', array(), $login);
+    $presmobicBeforeSubmitLogin = $core->mobiexec17('presmobicBeforeSubmitLogin', $login);
 } else {
-    $presmobicBeforeSubmitLogin = $core->mobiexec('presmobicBeforeSubmitLogin', array(), $login);
+    $presmobicBeforeSubmitLogin = $core->mobiexec('presmobicBeforeSubmitLogin', $login);
 }
 if (is_array($presmobicBeforeSubmitLogin)) {
     $use_email = $presmobicBeforeSubmitLogin['login']['use_email'];

@@ -17,7 +17,7 @@
 * International Registered Trademark & Property of Buy Addons Team
 *}
 <script>
-	var bazoom = {$productzoom|escape:'htmlall':'UTF-8'};
+	var bazoom = {$productzoom nofilter} {* no escape necessary *};
 	function bazoomimg(key){
 		$('.home-header').hide();
 		$('#footer-detail').hide();
@@ -103,7 +103,7 @@
 	{if !empty($product[0]['img'])}
 	<div class="owl-carousel owl-theme">
 		{foreach from=$product[0]['img'] key=key item=item}
-		<div class="item baimgdetail" img-value="{$key|escape:'htmlall':'UTF-8'+1}" attr-img="{$attri_img[$item['id_image']]|escape:'htmlall':'UTF-8'}" >
+		<div class="item baimgdetail" img-value="{$key|escape:'htmlall':'UTF-8'+1}" attr-img="{if isset($attri_img[$item['id_image']])}{$attri_img[$item['id_image']]|escape:'htmlall':'UTF-8'}{/if}" >
 			<img src="{$item['image']|escape:'htmlall':'UTF-8'}" style="float:left;" onclick="return bazoomimg({$key})" alt="">
 		</div>
 		{/foreach}
@@ -200,7 +200,7 @@
 	<div class="ui-grid-a">
 		{$hook_productbuton  nofilter} {* no escape necessary *}
 	</div>
-	<div class="ui-grid-a PresMobileproduct-rating" onclick="PresMobibamobileroutes(this)" ba-link="#comment">
+	<div class="ui-grid-a PresMobileproduct-rating" onclick="PresMobibamobileroutes(this)" ba-link="#comment:{$product[0]['id_product']|escape:'htmlall':'UTF-8'}">
 		{if !empty($product[0]['comment'])}
 		<div class="ui-block-a" style="width: 100%;">
 			<div style="float: left;">
@@ -379,10 +379,10 @@
 					</label>
 					<div class="td_detail_product_togetther_image" onclick="PresMobibamobileroutes(this)" ba-link="#product:{$item_acce['id_product']|escape:'htmlall':'UTF-8'}">
 						<img src="{$item_acce['link_img']|escape:'htmlall':'UTF-8'}" style="width: 100%;" alt="">
-						{if !empty({$item_acce['specific_prices']})}
+						{if !empty($item_acce['specific_prices'])}
 						{if $item_acce['specific_prices']['reduction_type'] == 'percentage'}
 						<div class = "td_product_detail_sale_off_mobile">
-							<span class="price-percent-reduction" style="text-shadow: none;" >-{$item_acce['specific_prices']['reduction']|escape:'htmlall':'UTF-8' * 100}%
+							<span class="price-percent-reduction" style="text-shadow: none;" >-{$item_acce['specific_prices']['reduction'] * 100}%
 							</span>
 						</div>
 						{/if}
@@ -398,9 +398,11 @@
 					</div>
 					<div style="float:  left;width: 100%;padding: 3px 0;">
 						<div>
+							{if isset($item_acce['grade_comment'])}
 							{for $foo=1 to 5}
 							<span style="text-align: center;margin: 0;{if $foo <= $item_acce['grade_comment']}color:#ffcc00; {/if}{if $foo > $item_acce['grade_comment']}color: whitesmoke;{/if}" class="ion-md-icon-star"></span>
 							{/for}
+							{/if}
 						</div>
 					</div>
 					<p class="d_product" style="padding: 0;height: auto;">

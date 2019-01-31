@@ -26,6 +26,5 @@
 			{l s='My order' mod='presmobileapp'}
 		</a>
 	</div>
-	{$hook_displayOrderConfirmation nofilter} {* no escape necessary *}
 	{$hook_displayPaymentReturn nofilter} {* no escape necessary *}
 </div>

@@ -45,11 +45,11 @@ $deletefavorite = array(
     )
 );
 if (Tools::version_compare(_PS_VERSION_, '1.7.0', '>=') && Tools::version_compare(_PS_VERSION_, '1.7.4', '<')) {
-    $presmobicBeforeDeleteFavorite = $core->mobiexec172('presmobicBeforeDeleteFavorite', array(), $deletefavorite);
+    $presmobicBeforeDeleteFavorite = $core->mobiexec172('presmobicBeforeDeleteFavorite', $deletefavorite);
 } elseif (Tools::version_compare(_PS_VERSION_, '1.7.4', '>=')) {
-    $presmobicBeforeDeleteFavorite = $core->mobiexec172('presmobicBeforeDeleteFavorite', array(), $deletefavorite);
+    $presmobicBeforeDeleteFavorite = $core->mobiexec172('presmobicBeforeDeleteFavorite', $deletefavorite);
 } else {
-    $presmobicBeforeDeleteFavorite = $core->mobiexec172('presmobicBeforeDeleteFavorite', array(), $deletefavorite);
+    $presmobicBeforeDeleteFavorite = $core->mobiexec172('presmobicBeforeDeleteFavorite', $deletefavorite);
 }
 if (is_array($presmobicBeforeDeleteFavorite)) {
     $id = $presmobicBeforeDeleteFavorite['deletefavorite']['id'];

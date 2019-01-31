@@ -39,7 +39,11 @@ $customer = new Customer();
 $id_guest = $context->cart->id_guest;
 $id_shop = $context->shop->id;
 $id_shop_group = $context->shop->id_shop_group;
-$id_page = $context->theme->product_per_page;
+if (Tools::version_compare(_PS_VERSION_, '1.7.5', '<')) {
+    $id_page = $context->theme->product_per_page;
+} else {
+    $id_page = 1;
+}
 $id_address = $context->customer->ip_registration_newsletter;
 $date = date("Y-m-d H:i:s");
 $sql = "INSERT INTO "._DB_PREFIX_."connections (id_connections,id_shop_group,id_shop,id_guest,id_page,ip_address ";

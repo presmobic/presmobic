@@ -53,13 +53,12 @@ $p = array(
         'id_attribute' =>$id_attribute
     )
 );
-$a = array();
 if (Tools::version_compare(_PS_VERSION_, '1.7.0', '>=') && Tools::version_compare(_PS_VERSION_, '1.7.4', '<')) {
-    $presmobicBeforeCartSubmitDeleteProduct = $core->mobiexec172('presmobicBeforeCartSubmitDeleteProduct', $a, $p);
+    $presmobicBeforeCartSubmitDeleteProduct = $core->mobiexec172('presmobicBeforeCartSubmitDeleteProduct', $p);
 } elseif (Tools::version_compare(_PS_VERSION_, '1.7.4', '>=')) {
-    $presmobicBeforeCartSubmitDeleteProduct = $core->mobiexec17('presmobicBeforeCartSubmitDeleteProduct', $a, $p);
+    $presmobicBeforeCartSubmitDeleteProduct = $core->mobiexec17('presmobicBeforeCartSubmitDeleteProduct', $p);
 } else {
-    $presmobicBeforeCartSubmitDeleteProduct = $core->mobiexec('presmobicBeforeCartSubmitDeleteProduct', $a, $p);
+    $presmobicBeforeCartSubmitDeleteProduct = $core->mobiexec('presmobicBeforeCartSubmitDeleteProduct', $p);
 }
 if (is_array($presmobicBeforeCartSubmitDeleteProduct)) {
     $id_product = $presmobicBeforeCartSubmitDeleteProduct['favorites']['id_product'];

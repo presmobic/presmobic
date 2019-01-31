@@ -50,11 +50,11 @@ if ($type == '1') {
         )
     );
     if (Tools::version_compare(_PS_VERSION_, '1.7.0', '>=') && Tools::version_compare(_PS_VERSION_, '1.7.4', '<')) {
-        $presmobicBeforeSaveWishlistById = $core->mobiexec172('presmobicBeforeSaveWishlistById', array(), $uppr);
+        $presmobicBeforeSaveWishlistById = $core->mobiexec172('presmobicBeforeSaveWishlistById', $uppr);
     } elseif (Tools::version_compare(_PS_VERSION_, '1.7.4', '>=')) {
-        $presmobicBeforeSaveWishlistById = $core->mobiexec172('presmobicBeforeSaveWishlistById', array(), $uppr);
+        $presmobicBeforeSaveWishlistById = $core->mobiexec172('presmobicBeforeSaveWishlistById', $uppr);
     } else {
-        $presmobicBeforeSaveWishlistById = $core->mobiexec172('presmobicBeforeSaveWishlistById', array(), $uppr);
+        $presmobicBeforeSaveWishlistById = $core->mobiexec172('presmobicBeforeSaveWishlistById', $uppr);
     }
     if (is_array($presmobicBeforeSaveWishlistById)) {
         $quantity = $presmobicBeforeSaveWishlistById['updateishlistproduct']['quantity'];
@@ -74,11 +74,11 @@ if ($type == '1') {
         )
     );
     if (Tools::version_compare(_PS_VERSION_, '1.7.0', '>=') && Tools::version_compare(_PS_VERSION_, '1.7.4', '<')) {
-        $presmobicBeforeDeleteWishlistById = $core->mobiexec172('presmobicBeforeDeleteWishlistById', array(), $deletep);
+        $presmobicBeforeDeleteWishlistById = $core->mobiexec172('presmobicBeforeDeleteWishlistById', $deletep);
     } elseif (Tools::version_compare(_PS_VERSION_, '1.7.4', '>=')) {
-        $presmobicBeforeDeleteWishlistById = $core->mobiexec172('presmobicBeforeDeleteWishlistById', array(), $deletep);
+        $presmobicBeforeDeleteWishlistById = $core->mobiexec172('presmobicBeforeDeleteWishlistById', $deletep);
     } else {
-        $presmobicBeforeDeleteWishlistById = $core->mobiexec172('presmobicBeforeDeleteWishlistById', array(), $deletep);
+        $presmobicBeforeDeleteWishlistById = $core->mobiexec172('presmobicBeforeDeleteWishlistById', $deletep);
     }
     if (is_array($presmobicBeforeDeleteWishlistById)) {
         $quantity = $presmobicBeforeDeleteWishlistById['deletewishlistpr']['quantity'];

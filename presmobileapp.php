@@ -40,6 +40,12 @@ class PresMobileApp extends Module
         $forceAll;
         $ac = _PS_THEME_DIR_;
         if (Tools::version_compare(_PS_VERSION_, '1.7', '<')) {
+            // rmdir(''.$ac.'mobile');
+            $dir = _PS_THEME_DIR_.'mobile';
+            if (file_exists($dir)) {
+                $this->deleteDir(''.$ac.'mobile');
+            }
+            // unlink(''.$ac.'mobile');
             unlink(''.$ac.'mobile\layout.tpl');
         }
         $tab = new Tab((int) Tab::getIdFromClassName('AdminPressMobileApp'));
@@ -55,6 +61,7 @@ class PresMobileApp extends Module
         if (Tools::version_compare(_PS_VERSION_, '1.7', '<')) {
             $dir = _PS_THEME_DIR_.'mobile';
             if (!file_exists($dir)) {
+                mkdir($dir);
             }
             $ab = _PS_MODULE_DIR_;
             $ac = _PS_THEME_DIR_;
@@ -63,7 +70,7 @@ class PresMobileApp extends Module
         }
         $tab_id = Tab::getIdFromClassName('AdminPressMobileApp');
         if ($tab_id === false) {
-            $this->installTab('AdminPressMobileApp', 'Presmobic');
+            $this->installTab('AdminPressMobileApp', 'PresMobic');
         }
         if (parent::enable() == false) {
             return false;
@@ -73,9 +80,6 @@ class PresMobileApp extends Module
     public function install()
     {
         if (Tools::version_compare(_PS_VERSION_, '1.7', '<')) {
-            $dir = _PS_THEME_DIR_.'mobile';
-            if (!file_exists($dir)) {
-            }
             $ab = _PS_MODULE_DIR_;
             $ac = _PS_THEME_DIR_;
             copy(''.$ab.'presmobileapp\views\templates\admin\layout.tpl', ''.$ac.'mobile\layout.tpl');
@@ -101,6 +105,27 @@ class PresMobileApp extends Module
             `key_mobic` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
             `body` longtext DEFAULT NULL,
             PRIMARY KEY (`id`) 
+        )';
+        $db->query($create_table);
+        $sql = 'CREATE TABLE IF NOT EXISTS ' . _DB_PREFIX_ . 'ba_mobic_oder (
+            `id` int(11) unsigned NOT NULL auto_increment,
+            `id_order` int(11),
+            PRIMARY KEY (`id`) 
+        )';
+        $db->query($sql);
+        $create_table = 'CREATE TABLE IF NOT EXISTS ' . _DB_PREFIX_ . 'ba_mobic_comment (
+            `id_product_comment` int(11) unsigned NOT NULL auto_increment,
+            `id_product` int(11),
+            `id_customer` int(11),
+            `id_guest` int(11),
+            `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+            `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+            `customer_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+            `grade` int(11),
+            `validate` int(11),
+            `deleted` int(11),
+            `date_add` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+            PRIMARY KEY (`id_product_comment`) 
         )';
         $db->query($create_table);
         $list_id_shop = Shop::getCompleteListOfShopsID();
@@ -175,7 +200,7 @@ class PresMobileApp extends Module
                 $db->query($insert_premobic_slider);
             }
         }
-        $this->installTab('AdminPressMobileApp', 'presmobic');
+        $this->installTab('AdminPressMobileApp', 'PresMobic');
         if (parent::install() == false) {
             return false;
         }
@@ -210,9 +235,11 @@ class PresMobileApp extends Module
         $tab = new Tab((int) Tab::getIdFromClassName('AdminPressMobileApp'));
         $tab->delete();
         $db = Db::getInstance(_PS_USE_SQL_SLAVE_);
-        $sql = "DROP TABLE " . _DB_PREFIX_ . "ba_mobileapp_block";
-        $sql1 = "DROP TABLE " . _DB_PREFIX_ . "ba_mobic_cache";
-        $sql2 = "DROP TABLE " . _DB_PREFIX_ . "ba_premobic_slider";
+        $sql = "DROP TABLE IF EXISTS " . _DB_PREFIX_ . "ba_mobileapp_block";
+        $sql1 = "DROP TABLE IF EXISTS " . _DB_PREFIX_ . "ba_mobic_cache";
+        $sql2 = "DROP TABLE IF EXISTS " . _DB_PREFIX_ . "ba_premobic_slider";
+        $sql3 = "DROP TABLE IF EXISTS " . _DB_PREFIX_ . "ba_mobic_comment";
+        $db->query($sql3);
         $db->query($sql2);
         $db->query($sql);
         $db->query($sql1);
@@ -267,6 +294,9 @@ class PresMobileApp extends Module
         $url = $corea->getMobiBaseLink();
         $url;
         if ($check_mobile == '1') {
+            $db = Db::getInstance(_PS_USE_SQL_SLAVE_);
+            $sql = "INSERT INTO " . _DB_PREFIX_ . "ba_mobic_oder VALUES('',".(int)$id_order.")";
+            $db->query($sql);
             echo $id_order;
             die;
             // header('Location: '.$url.'#checkoutsuccess:'.$id_order.'');
@@ -1078,6 +1108,28 @@ class PresMobileApp extends Module
         $mobic_genimg =  (int)Configuration::get('PS_PRICE_ROUND_MODE');
         $bamodule = AdminController::$currentIndex;
         $token = Tools::getAdminTokenLite('AdminModules');
+        $debug_add = Configuration::get('debug_add', null, '', $id_shop);
+        if ($debug_add == 1) {
+            $ac = _PS_THEME_DIR_;
+            if (Tools::version_compare(_PS_VERSION_, '1.7', '<')) {
+                // rmdir(''.$ac.'mobile');
+                $dir = _PS_THEME_DIR_.'mobile';
+                if (file_exists($dir)) {
+                    $this->deleteDir(''.$ac.'mobile');
+                }
+            }
+        } else {
+            if (Tools::version_compare(_PS_VERSION_, '1.7', '<')) {
+                $dir = _PS_THEME_DIR_.'mobile';
+                if (!file_exists($dir)) {
+                    @mkdir($dir);
+                }
+                $ab = _PS_MODULE_DIR_;
+                $ac = _PS_THEME_DIR_;
+                @copy(''.$ab.'presmobileapp\views\templates\admin\layout.tpl', ''.$ac.'mobile\layout.tpl');
+                @copy(''.$ab.'presmobileapp\views\templates\admin\layout_total.tpl', ''.$ac.'layout.tpl');
+            }
+        }
         $this->smarty->assign('configure', $this->name);
         $this->context->smarty->assign('mobic_token', Tools::getAdminTokenLite('AdminModules'));
         $this->context->smarty->assign('start_bamobicgenimg', $start_bamobicgenimg);
@@ -1315,8 +1367,29 @@ class PresMobileApp extends Module
         } else {
             $tab->id_parent = 0;
         }
+        if (Tools::version_compare(_PS_VERSION_, '1.7', '>=')) {
+            $tab->icon = 'stay_current_portrait';
+        }
         $tab->module = $this->name;
         $tab->add();
         return $tab->save();
+    }
+    public static function deleteDir($dirPath)
+    {
+        if (! is_dir($dirPath)) {
+            throw new InvalidArgumentException("$dirPath must be a directory");
+        }
+        if (Tools::substr($dirPath, Tools::strlen($dirPath) - 1, 1) != '/') {
+            $dirPath .= '/';
+        }
+        $files = glob($dirPath . '*', GLOB_MARK);
+        foreach ($files as $file) {
+            if (is_dir($file)) {
+                self::deleteDir($file);
+            } else {
+                unlink($file);
+            }
+        }
+        rmdir($dirPath);
     }
 }

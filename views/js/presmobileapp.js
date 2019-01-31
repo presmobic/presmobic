@@ -24,6 +24,8 @@ var choice_category_lastest = 2;
 var start_ajax = 1;
 var category_list = 2;
 var run_loading = 1;
+var view_category = 1;
+var view_product = 1;
 var array_port = ['http','https'];
 var array_back = [];
 var page_array = ['ordermessenger','mywishlistbyid','myvouchers','checkoutonestep','contact','merchandisereturns','privacypolicy','about','termsofuse','creditslips','myaddressbycustomer','myaddress','home','category','latest','product','login','forgotpassword','order','orderbyid','comment','checkoutaddress','checkoutsuccess','signup','favorite','profile','cart','checkoutcart','checkoutpayment','search','account','wishlist'];
@@ -500,6 +502,39 @@ function PresMobibamobileroutes(emlement,type){
         var rangemax = $('.ui-rangeslider-last').val();
     }
     window.location.hash = link;
+    if (controllers == '#category' && argument != '') {
+        // alert('aaaaaaaaaa');
+        PreMobisetCookie('argument_category',argument);
+        var view_cookie = PreMobigetCookie('total_view_'+argument+'');
+        if (view_cookie != '') {
+            var total_view = parseInt(view_category)+parseInt(view_cookie);
+        } else {
+            var total_view = view_category;
+        }
+        // alert(total_view);
+        PreMobisetCookie('total_view_'+argument+'',total_view);
+
+        var view_cookie = PreMobigetCookie('total_view_'+argument+'');
+    }
+    if (controllers == '#product' && argument != '') {
+        // alert('aaaaaaaaaa');
+        PreMobisetCookie('argument_product',argument);
+        var view_cookie = PreMobigetCookie('total_view_product'+argument+'');
+        if (view_cookie != '') {
+            var total_view = parseInt(view_product)+parseInt(view_cookie);
+        } else {
+            var total_view = view_product;
+        }
+        // alert(total_view);
+        PreMobisetCookie('total_view_product'+argument+'',total_view);
+
+        var view_cookie = PreMobigetCookie('total_view_product'+argument+'');
+    }
+    // var argument_category = PreMobigetCookie('argument_category');
+    // alert(view_cookie);
+    // if (argument_category != argument) {
+    //     // view_category = 0;
+    // }
     $.post("" + url_presmobileapp + "?fc=module&module=presmobileapp&controller=baloadpage&ajax=1&token_pres="+token_pres,
     {
         controllers: controllers,
@@ -509,7 +544,8 @@ function PresMobibamobileroutes(emlement,type){
         rangemin: rangemin,
         rangemax:rangemax,
         sort_category:sort_category,
-        id_category_lastest:id_category_lastest
+        id_category_lastest:id_category_lastest,
+        view_cookie: view_cookie
     },
     function (data, status) {
         document.documentElement.scrollTop = 0;
@@ -2390,16 +2426,25 @@ function PresMobileCheckOutAddressCheckFields(){
             checkall = 0;
         }
     });
-    var hasemail = $("#stepAddress").hasClass("email-delivery");
+    var hasemail = $("input").hasClass("email-delivery");
     if (hasemail == true) {
         var check_mail = $(".email-delivery").val();
-        if (check_mail == '' || !validateEmail(check_mail)) {
+        if (check_mail == '') {
             checkall = 0;
+        } else {
+            checkall = 1;
+        }
+        if (!validateEmail(check_mail)) {
+            checkall = 0;
+        }  else {
+            checkall = 1;
         }
     }
+
+       console.log(checkall);
     if(checkall == 1){
         $('.PresMobilesubmit-address').removeClass('disabledbutton');
-    }else{
+    } else {
         $('.PresMobilesubmit-address').addClass('disabledbutton');
     }
 }

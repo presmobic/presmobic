@@ -51,7 +51,9 @@ class BaCheckOutSuccess extends PresMobileApp
             $db_meta = $db->Executes($sql_meta);
             $batitle = $db_meta[0]['title'].' - '.$shop_name;
         }
-        $hook_displayOrderConfirmation = '';
+        $hook_displayOrderConfirmation = array(
+            'mobic_id_order' =>$id_order
+        );
         $hook_displayPaymentReturn = '';
         $price_total = Tools::displayPrice(0);
         $context->smarty->assign("url", $url);

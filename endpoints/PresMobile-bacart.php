@@ -155,7 +155,7 @@ class BaCart extends PresMobileApp
             $ar_product = array('baproduct'=>$product);
             $presmobicGetDataProductCart = $core->mobiexec172('presmobicGetDataProductCart', $ar_product);
             $presmobicBeforeCartBoxQuantity = $core->mobiexec172('presmobicBeforeCartBoxQuantity', array());
-            $presmobicBeforeCartBoxQuantity = $core->mobiexec172('presmobicBeforeCartBoxQuantity', array());
+            $presmobicAfterCartBoxQuantity = $core->mobiexec172('presmobicAfterCartBoxQuantity', array());
             $presmobicBeforeCartSubmitCheckout = $core->mobiexec172('presmobicBeforeCartSubmitCheckout', array());
             $presmobicAfterCartSubmitCheckout = $core->mobiexec172('presmobicAfterCartSubmitCheckout', array());
         } elseif (Tools::version_compare(_PS_VERSION_, '1.7.4', '>=')) {

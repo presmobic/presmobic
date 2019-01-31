@@ -494,9 +494,15 @@ class BaPageTing extends PresMobileApp
     public function getComment($limit, $id_product)
     {
         $db = Db::getInstance(_PS_USE_SQL_SLAVE_);
-        $select = "SELECT *FROM " . _DB_PREFIX_ . "product_comment WHERE id_product=".(int)$id_product."";
-        $select .= " AND validate=1 limit ".(int)$limit.",6";
-        $param = $db->Executes($select);
+        if (Tools::version_compare(_PS_VERSION_, '1.7.0', '>=')) {
+            $select = "SELECT *FROM " . _DB_PREFIX_ . "ba_mobic_comment WHERE id_product=".(int)$id_product."";
+            $select .= " AND validate=1 limit ".(int)$limit.",6";
+            $param = $db->Executes($select);
+        } else {
+            $select = "SELECT *FROM " . _DB_PREFIX_ . "product_comment WHERE id_product=".(int)$id_product."";
+            $select .= " AND validate=1 limit ".(int)$limit.",6";
+            $param = $db->Executes($select);
+        }
         return $param;
     }
 }

@@ -27,7 +27,7 @@
   <div data-role="main" class="ui-content main1">
     {$presmobicDisplayBeforeLatestTitle nofilter} {* no escape necessary *}
     <div class="ui-grid-a">
-      <h4 class="text">{l s='LATEST' mod='presmobileapp'}</h4>
+      <h4 class="text">{l s='LASTEST' mod='presmobileapp'}</h4>
     </div>
     {$presmobicDisplayAfterLatestTitle nofilter} {* no escape necessary *}
     <div class="ui-grid-a PresMobilelist-latest-category">

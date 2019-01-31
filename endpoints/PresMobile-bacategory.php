@@ -131,6 +131,8 @@ class BaCategory extends PresMobileApp
         $rangemin = (int) Tools::getValue('rangemin');
         $rangemax = (int) Tools::getValue('rangemax');
         $sort_category = Tools::getValue('sort_category');
+        $view_cookie = Tools::getValue('view_cookie');
+        Configuration::updateValue('view_cookie_'.$argument.'', $view_cookie, false, '', null);
         $hook_array = array(
             'category_filter' => array(
                 'checkbox_color_array' =>$checkbox_color_array,

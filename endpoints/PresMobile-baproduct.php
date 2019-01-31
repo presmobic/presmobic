@@ -30,6 +30,8 @@ class BaProduct extends PresMobileApp
         $shop_name = Configuration::get('PS_SHOP_NAME');
         $db = Db::getInstance(_PS_USE_SQL_SLAVE_);
         $id_product = (int)Tools::getValue('argument');
+        $view_cookie = (int)Tools::getValue('view_cookie');
+        Configuration::updateValue('view_cookie_product'.$id_product.'', $view_cookie, false, '', null);
         $qtity = Product::getQuantity($id_product);
         $qtity;
         $presmobileapp = new PresMobileApp();
@@ -44,7 +46,21 @@ class BaProduct extends PresMobileApp
         include_once($url_fodel.'presmobileapp/includes/Presmobic-core.php');
         $core = new BaCore();
         $product_a = new Product($id_product);
-        $check_cache = $core->presMobicheckcache($controller.':'.$id_product);
+        $cache_add = Configuration::get('cache_add');
+        if ($cache_add == 1) {
+            $check_cache = $core->presMobicheckcache($controller.':'.$id_product);
+            if ($check_cache != '') {
+                $result = array(
+                    'controller' => $controller,
+                    'content' => $check_cache,
+                    'chir' => 'Detail',
+                    'batitle' => $product_a->name.' - '.$shop_name,
+                    'description' => ''
+                );
+                echo json_encode($result);
+                die;
+            }
+        }
         $check_cache;
         $active_wishlist = 0;
         $active_favorite = 0;
@@ -82,6 +98,20 @@ class BaProduct extends PresMobileApp
         if (Module::isInstalled("productcomments")) {
             $db = Db::getInstance(_PS_USE_SQL_SLAVE_);
             $query = "SELECT *FROM " . _DB_PREFIX_ . "product_comment WHERE validate='1'";
+            $query .= " AND id_product='".(int)$id_product."'";
+            $param = $db->ExecuteS($query);
+            if (!empty($param)) {
+                $rate = 0;
+                $product[0]['count_comment'] = count($param);
+                foreach ($param as $key => $value) {
+                    $rate += $value['grade'];
+                }
+                $product[0]['grade_comment'] = round($rate/$product[0]['count_comment']);
+            }
+        }
+        if (Tools::version_compare(_PS_VERSION_, '1.7.0', '>=')) {
+            $db = Db::getInstance(_PS_USE_SQL_SLAVE_);
+            $query = "SELECT *FROM " . _DB_PREFIX_ . "ba_mobic_comment WHERE validate='0'";
             $query .= " AND id_product='".(int)$id_product."'";
             $param = $db->ExecuteS($query);
             if (!empty($param)) {
@@ -155,6 +185,23 @@ class BaProduct extends PresMobileApp
                     if (Module::isInstalled("productcomments")) {
                         $query = "SELECT *FROM " . _DB_PREFIX_ . "product_comment ";
                         $query .= "WHERE validate='1' ";
+                        $query .= "AND id_product='".(int)$value_ac['id_product']."'";
+                        $param = $db->ExecuteS($query);
+                        $rate_pack = 0;
+                        $product_pack[$key_ac]['count_comment'] = count($param);
+                        if (!empty($param)) {
+                            foreach ($param as $key => $value) {
+                                $rate_pack += $value['grade'];
+                            }
+                            $ck = round($rate_pack/$product_pack[$key_ac]['count_comment']);
+                            $product_pack[$key_ac]['grade_comment'] = $ck;
+                        } else {
+                            $product_pack[$key_ac]['grade_comment'] = 0;
+                        }
+                    }
+                    if (Tools::version_compare(_PS_VERSION_, '1.7.0', '>=')) {
+                        $query = "SELECT *FROM " . _DB_PREFIX_ . "ba_mobic_comment ";
+                        $query .= "WHERE validate='0' ";
                         $query .= "AND id_product='".(int)$value_ac['id_product']."'";
                         $param = $db->ExecuteS($query);
                         $rate_pack = 0;
@@ -417,6 +464,7 @@ class BaProduct extends PresMobileApp
         if (is_array($presmobic_productprice)) {
             $product[0]['total_price'] = $presmobic_productprice['product_total_price'];
         }
+        // var_dump($product_pack);die;
         $url = $core->getMobiBaseLink();
         $context->smarty->assign("hide_qty", $hide_qty);
         $context->smarty->assign("hook_top", '');

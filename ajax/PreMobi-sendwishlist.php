@@ -49,11 +49,11 @@ $sendwishlist = array(
     )
 );
 if (Tools::version_compare(_PS_VERSION_, '1.7.0', '>=') && Tools::version_compare(_PS_VERSION_, '1.7.4', '<')) {
-    $presmobicBeforeSendWishlistById = $core->mobiexec172('presmobicBeforeSendWishlistById', array(), $sendwishlist);
+    $presmobicBeforeSendWishlistById = $core->mobiexec172('presmobicBeforeSendWishlistById', $sendwishlist);
 } elseif (Tools::version_compare(_PS_VERSION_, '1.7.4', '>=')) {
-    $presmobicBeforeSendWishlistById = $core->mobiexec172('presmobicBeforeSendWishlistById', array(), $sendwishlist);
+    $presmobicBeforeSendWishlistById = $core->mobiexec172('presmobicBeforeSendWishlistById', $sendwishlist);
 } else {
-    $presmobicBeforeSendWishlistById = $core->mobiexec172('presmobicBeforeSendWishlistById', array(), $sendwishlist);
+    $presmobicBeforeSendWishlistById = $core->mobiexec172('presmobicBeforeSendWishlistById', $sendwishlist);
 }
 if (is_array($presmobicBeforeSendWishlistById)) {
     $id_wishlist = $presmobicBeforeSendWishlistById['addwishlist']['id_wishlist'];

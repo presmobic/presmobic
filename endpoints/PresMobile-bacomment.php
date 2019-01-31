@@ -54,6 +54,15 @@ class BaComment extends PresMobileApp
             $select .= " AND validate=1 limit 0,6";
             $param = $db->Executes($select);
         }
+        if (Tools::version_compare(_PS_VERSION_, '1.7.0', '>=')) {
+            $comment_check = 1;
+            $comment_time = 1;
+            $show_comment = 1;
+            $select = "SELECT *FROM " . _DB_PREFIX_ . "ba_mobic_comment WHERE id_product=".(int)$id_product."";
+            $select .= " AND validate=0 limit 0,6";
+            $param = $db->Executes($select);
+        }
+        // var_dump($param);die;
         if (!empty($param)) {
             $star_5 = 0;
             $star_4 = 0;

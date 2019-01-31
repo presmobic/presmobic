@@ -55,11 +55,11 @@ $comment = array(
     )
 );
 if (Tools::version_compare(_PS_VERSION_, '1.7.0', '>=') && Tools::version_compare(_PS_VERSION_, '1.7.4', '<')) {
-    $presmobicSubmitComment = $core->mobiexec172('presmobicSubmitComment', array(), $comment);
+    $presmobicSubmitComment = $core->mobiexec172('presmobicSubmitComment', $comment);
 } elseif (Tools::version_compare(_PS_VERSION_, '1.7.4', '>=')) {
-    $presmobicSubmitComment = $core->mobiexec17('presmobicSubmitComment', array(), $comment);
+    $presmobicSubmitComment = $core->mobiexec17('presmobicSubmitComment', $comment);
 } else {
-    $presmobicSubmitComment = $core->mobiexec('presmobicSubmitComment', array(), $comment);
+    $presmobicSubmitComment = $core->mobiexec('presmobicSubmitComment', $comment);
 }
 if (is_array($presmobicSubmitComment)) {
     $id_product = $presmobicSubmitComment['comment']['id_product'];
@@ -68,27 +68,60 @@ if (is_array($presmobicSubmitComment)) {
     $rating_value = $presmobicSubmitComment['comment']['rating_value'];
     $comment_customname = $presmobicSubmitComment['comment']['comment_customname'];
 }
-if ($cart['logged']) {
-    $sql = "INSERT INTO " . _DB_PREFIX_ . "product_comment";
-    $sql .= " VALUES('','".(int)$id_product."','".(int)$cart['id_customer']."',";
-    $sql .= "'".(int)$id_guest."','".pSQL($comment_name)."',";
-    $sql .= "'".pSQL($comment_descriprtion)."',";
-    $sql .= "'".pSQL($cart['customerName'])."','".(int)$rating_value."',";
-    $sql .= "'0','0','".pSQL($date_add)."')";
-    $db->query($sql);
+if (Tools::version_compare(_PS_VERSION_, '1.7.0', '>=')) {
+    if ($cart['logged']) {
+        $sql = "INSERT INTO " . _DB_PREFIX_ . "ba_mobic_comment";
+        $sql .= " VALUES('','".(int)$id_product."','".(int)$cart['id_customer']."',";
+        $sql .= "'".(int)$id_guest."','".pSQL($comment_name)."',";
+        $sql .= "'".pSQL($comment_descriprtion)."',";
+        $sql .= "'".pSQL($cart['customerName'])."','".(int)$rating_value."',";
+        $sql .= "'0','0','".pSQL($date_add)."')";
+        $db->query($sql);
+        $id_comment = $db->Insert_ID();
+    } else {
+        $sql = "INSERT INTO " . _DB_PREFIX_ . "ba_mobic_comment";
+        $sql .= " VALUES('','".(int)$id_product."','0','".(int)$id_guest."',";
+        $sql .= "'".pSQL($comment_name)."','".pSQL($comment_descriprtion)."',";
+        $sql .= "'".pSQL($comment_customname)."','".(int)$rating_value."',";
+        $sql .= "'0','0','".pSQL($date_add)."')";
+        $db->query($sql);
+        $id_comment = $db->Insert_ID();
+    }
 } else {
-    $sql = "INSERT INTO " . _DB_PREFIX_ . "product_comment";
-    $sql .= " VALUES('','".(int)$id_product."','0','".(int)$id_guest."',";
-    $sql .= "'".pSQL($comment_name)."','".pSQL($comment_descriprtion)."',";
-    $sql .= "'".pSQL($comment_customname)."','".(int)$rating_value."',";
-    $sql .= "'0','0','".pSQL($date_add)."')";
-    $db->query($sql);
+    if ($cart['logged']) {
+        $sql = "INSERT INTO " . _DB_PREFIX_ . "product_comment";
+        $sql .= " VALUES('','".(int)$id_product."','".(int)$cart['id_customer']."',";
+        $sql .= "'".(int)$id_guest."','".pSQL($comment_name)."',";
+        $sql .= "'".pSQL($comment_descriprtion)."',";
+        $sql .= "'".pSQL($cart['customerName'])."','".(int)$rating_value."',";
+        $sql .= "'0','0','".pSQL($date_add)."')";
+        $db->query($sql);
+        $id_comment = $db->Insert_ID();
+    } else {
+        $sql = "INSERT INTO " . _DB_PREFIX_ . "product_comment";
+        $sql .= " VALUES('','".(int)$id_product."','0','".(int)$id_guest."',";
+        $sql .= "'".pSQL($comment_name)."','".pSQL($comment_descriprtion)."',";
+        $sql .= "'".pSQL($comment_customname)."','".(int)$rating_value."',";
+        $sql .= "'0','0','".pSQL($date_add)."')";
+        $db->query($sql);
+        $id_comment = $db->Insert_ID();
+    }
 }
+$id_comment = array(
+    'id_comment_add' => $id_comment
+);
+if (Tools::version_compare(_PS_VERSION_, '1.7.0', '>=') && Tools::version_compare(_PS_VERSION_, '1.7.4', '<')) {
+    $presmobicAfterSubmitComment = $core->mobiexec172('presmobicAfterSubmitComment', $id_comment);
+} elseif (Tools::version_compare(_PS_VERSION_, '1.7.4', '>=')) {
+    $presmobicAfterSubmitComment = $core->mobiexec17('presmobicAfterSubmitComment', $id_comment);
+} else {
+    $presmobicAfterSubmitComment = $core->mobiexec('presmobicAfterSubmitComment', $id_comment);
+}
+$context->cookie->checkcomment1 = date('H:i:s');
 $presmobileapp = new PresMobileApp();
 $result = array(
     'status' =>200,
     'messeger' =>$presmobileapp->l('Successfully added to Comment'),
 );
-$context->cookie->checkcomment1 = date('H:i:s');
 echo json_encode($result);
 die;

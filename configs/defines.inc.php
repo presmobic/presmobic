@@ -139,7 +139,8 @@ $hook_un = array(
     'displayHomeTabContent'=> array(
         0=>'blocknewproducts',
         1=>'homefeatured',
-        2=>'blockbestsellers'
+        2=>'blockbestsellers',
+        3=>'blockspecials'
     ),
     'displayFooter'=> array(
         0=>'blocksocial',
@@ -330,7 +331,8 @@ $hook_re = array(
     139=>'presmobicBeforeSignUp',
     140=>'presmobicBeforeSubmitSignUp',
     141=>'presmobicBeforeSubmitSignUp',
-    142=>'presmobicAfterSignUp'
+    142=>'presmobicAfterSignUp',
+    143=>'presmobicAfterSubmitComment'
 );
 define('_PS_MOBIC_HOOK_RE_', json_encode($hook_re));
 define('_PS_MOBIC_HOOK_', json_encode($hook_un));

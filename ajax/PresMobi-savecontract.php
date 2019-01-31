@@ -83,11 +83,11 @@ $contact = array(
     )
 );
 if (Tools::version_compare(_PS_VERSION_, '1.7.0', '>=') && Tools::version_compare(_PS_VERSION_, '1.7.4', '<')) {
-    $presmobicBeforeSubmitContacUs = $core->mobiexec172('presmobicBeforeSubmitContacUs', array(), $contact);
+    $presmobicBeforeSubmitContacUs = $core->mobiexec172('presmobicBeforeSubmitContacUs', $contact);
 } elseif (Tools::version_compare(_PS_VERSION_, '1.7.4', '>=')) {
-    $presmobicBeforeSubmitContacUs = $core->mobiexec17('presmobicBeforeSubmitContacUs', array(), $contact);
+    $presmobicBeforeSubmitContacUs = $core->mobiexec17('presmobicBeforeSubmitContacUs', $contact);
 } else {
-    $presmobicBeforeSubmitContacUs = $core->mobiexec('presmobicBeforeSubmitContacUs', array(), $contact);
+    $presmobicBeforeSubmitContacUs = $core->mobiexec('presmobicBeforeSubmitContacUs', $contact);
 }
 if (is_array($presmobicBeforeSubmitContacUs)) {
     $name = $presmobicBeforeSubmitContacUs['contact']['name'];

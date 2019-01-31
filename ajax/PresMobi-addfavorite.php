@@ -46,11 +46,11 @@ $favorite_product_array = array(
     )
 );
 if (Tools::version_compare(_PS_VERSION_, '1.7.0', '>=') && Tools::version_compare(_PS_VERSION_, '1.7.4', '<')) {
-    $presmobic_favorites = $core->mobiexec172('presmobic_favorites', array(), $favorite_product_array);
+    $presmobic_favorites = $core->mobiexec172('presmobic_favorites', $favorite_product_array);
 } elseif (Tools::version_compare(_PS_VERSION_, '1.7.4', '>=')) {
-    $presmobic_favorites = $core->mobiexec17('presmobic_favorites', array(), $favorite_product_array);
+    $presmobic_favorites = $core->mobiexec17('presmobic_favorites', $favorite_product_array);
 } else {
-    $presmobic_favorites = $core->mobiexec('presmobic_favorites', array(), $favorite_product_array);
+    $presmobic_favorites = $core->mobiexec('presmobic_favorites', $favorite_product_array);
 }
 if (is_array($presmobic_favorites)) {
     $id_product = $presmobic_favorites['favorites']['id_product'];

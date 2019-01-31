@@ -51,9 +51,10 @@
     }
     // alert(link_new);
   </script>
+  
+  {if $version_mobi >= '1.7'}
   <script
   src="{$baseDir|escape:'htmlall':'UTF-8'}modules/presmobileapp/views/js/jquery-2.2.4.min.js"></script>
-  {if $version_mobi >= '1.7'}
   {foreach $javascript.bottom.external as $js}
   <script type="text/javascript" src="{$js.uri|escape:'htmlall':'UTF-8'}" {$js.attribute|escape:'htmlall':'UTF-8'}></script>
   {/foreach}
@@ -68,7 +69,7 @@
   {/if} 
   {if $version_mobi < '1.7'}
    <script
-  src="{$baseDir|escape:'htmlall':'UTF-8'}modules/presmobileapp/views/js/jquery-2.2.4.min.js"></script>
+  src="{$baseDir|escape:'htmlall':'UTF-8'}modules/presmobileapp/views/js/jquery-1.11.3.min.js"></script>
   {if $install_stripe_official === true}
   <script type="text/javascript" src="{$baseDir|escape:'htmlall':'UTF-8'}modules/stripe_official/views/js/jquery.the-modal.js"></script>
   <script type="text/javascript" src="{$baseDir|escape:'htmlall':'UTF-8'}modules/stripe_official/views/js/payment_validation.js"></script>
@@ -111,7 +112,12 @@
   {/if}
   <!-- Include meta tag to ensure proper rendering and touch zooming -->
   {* <link mimeType="application/font-woff" href="{$baseDir}modules/presmobileapp/views/fonts/fontello.ttf"> *}
-  <script src="{$baseDir|escape:'htmlall':'UTF-8'}modules/presmobileapp/views/js/iquery-ui-1.12.1.js"></script>
+    {if $version_mobi < '1.7' && $version_mobi >= '1.6.1'}
+    <script src="{$baseDir|escape:'htmlall':'UTF-8'}modules/presmobileapp/views/js/jquery-ui-1.11.4.min.js" type="text/javascript"></script>
+    {else}
+      <script src="{$baseDir|escape:'htmlall':'UTF-8'}modules/presmobileapp/views/js/iquery-ui-1.12.1.js"></script>
+    {/if}
+  
   <script src="{$baseDir|escape:'htmlall':'UTF-8'}modules/presmobileapp/views/js/touchmove.js"></script>
   <script src="{$baseDir|escape:'htmlall':'UTF-8'}modules/presmobileapp/views/js/jquery.mobile-1.4.5.min.js"></script>
   <script src="{$baseDir|escape:'htmlall':'UTF-8'}modules/presmobileapp/views/js/owl.carousel.js"></script>

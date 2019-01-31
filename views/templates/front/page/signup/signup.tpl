@@ -16,7 +16,6 @@
 * @license   http://www.opensource.org/licenses/gpl-3.0.html  GNU General Public License version 3
 * International Registered Trademark & Property of Buy Addons Team
 *}
-{$presmobicBeforeLogin nofilter} {* no escape necessary *}
 <div class="PresMobilesignup-content">
 	<form method="post" action="" id="presmobi-sign-up">
 		<div class="form-group">
@@ -147,4 +146,3 @@
 		</div>
 	</form>
 </div>
-{$presmobicAfterLogin nofilter} {* no escape necessary *}

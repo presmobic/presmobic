@@ -56,11 +56,11 @@ $badiscount = array(
     )
 );
 if (Tools::version_compare(_PS_VERSION_, '1.7.0', '>=') && Tools::version_compare(_PS_VERSION_, '1.7.4', '<')) {
-    $presmobicBeforeCartSubmitCoupon = $core->mobiexec172('presmobicBeforeCartSubmitCoupon', array(), $badiscount);
+    $presmobicBeforeCartSubmitCoupon = $core->mobiexec172('presmobicBeforeCartSubmitCoupon', $badiscount);
 } elseif (Tools::version_compare(_PS_VERSION_, '1.7.4', '>=')) {
-    $presmobicBeforeCartSubmitCoupon = $core->mobiexec17('presmobicBeforeCartSubmitCoupon', array(), $badiscount);
+    $presmobicBeforeCartSubmitCoupon = $core->mobiexec17('presmobicBeforeCartSubmitCoupon', $badiscount);
 } else {
-    $presmobicBeforeCartSubmitCoupon = $core->mobiexec('presmobicBeforeCartSubmitCoupon', array(), $badiscount);
+    $presmobicBeforeCartSubmitCoupon = $core->mobiexec('presmobicBeforeCartSubmitCoupon', $badiscount);
 }
 if (is_array($presmobicBeforeCartSubmitCoupon)) {
     $discount = $presmobicBeforeCartSubmitCoupon['favorites']['discount'];

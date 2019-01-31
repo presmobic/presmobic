@@ -155,11 +155,11 @@ if (!empty($param)) {
         )
     );
     if (Tools::version_compare(_PS_VERSION_, '1.7.0', '>=') && Tools::version_compare(_PS_VERSION_, '1.7.4', '<')) {
-        $presmobicBeforeSubmitSignUp = $core->mobiexec172('presmobicBeforeSubmitSignUp', array(), $signup);
+        $presmobicBeforeSubmitSignUp = $core->mobiexec172('presmobicBeforeSubmitSignUp', $signup);
     } elseif (Tools::version_compare(_PS_VERSION_, '1.7.4', '>=')) {
-        $presmobicBeforeSubmitSignUp = $core->mobiexec17('presmobicBeforeSubmitSignUp', array(), $signup);
+        $presmobicBeforeSubmitSignUp = $core->mobiexec17('presmobicBeforeSubmitSignUp', $signup);
     } else {
-        $presmobicBeforeSubmitSignUp = $core->mobiexec('presmobicBeforeSubmitSignUp', array(), $signup);
+        $presmobicBeforeSubmitSignUp = $core->mobiexec('presmobicBeforeSubmitSignUp', $signup);
     }
     if (is_array($presmobicBeforeSubmitSignUp)) {
         $newslettersigin = $presmobicBeforeSubmitSignUp['signup']['newslettersigin'];

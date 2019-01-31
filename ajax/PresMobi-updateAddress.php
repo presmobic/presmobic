@@ -98,11 +98,11 @@ $updateaddre = array(
     )
 );
 if (Tools::version_compare(_PS_VERSION_, '1.7.0', '>=') && Tools::version_compare(_PS_VERSION_, '1.7.4', '<')) {
-    $presmobicBeforeSubmitAddAddress = $core->mobiexec172('presmobicBeforeSubmitAddAddress', array(), $updateaddre);
+    $presmobicBeforeSubmitAddAddress = $core->mobiexec172('presmobicBeforeSubmitAddAddress', $updateaddre);
 } elseif (Tools::version_compare(_PS_VERSION_, '1.7.4', '>=')) {
-    $presmobicBeforeSubmitAddAddress = $core->mobiexec172('presmobicBeforeSubmitAddAddress', array(), $updateaddre);
+    $presmobicBeforeSubmitAddAddress = $core->mobiexec172('presmobicBeforeSubmitAddAddress', $updateaddre);
 } else {
-    $presmobicBeforeSubmitAddAddress = $core->mobiexec172('presmobicBeforeSubmitAddAddress', array(), $updateaddre);
+    $presmobicBeforeSubmitAddAddress = $core->mobiexec172('presmobicBeforeSubmitAddAddress', $updateaddre);
 }
 if (is_array($presmobicBeforeSubmitAddAddress)) {
     $email = $presmobicBeforeSubmitAddAddress['updateaddress']['email'];
