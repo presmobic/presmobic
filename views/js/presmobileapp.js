@@ -2224,23 +2224,26 @@ function selectpayment17(id){
     $('.selected-payment-mobi').attr('onclick','PresMobileChoicePayment17("'+action+'","'+id+'")');
 }
 function PresMobileChoicePayment17(action,id){
-    if(action.indexOf(url_presmobileapp) == -1) {
-        $('#pay-with-'+id).trigger('click');
-    } else {
-        $.ajax({
-            url: action,
-            type: "GET",
-            async: false,
-            success: function (data) {
-                PresMobibamobileroutesback('#checkoutsuccess:'+data);
-                $('.PresMobileicon-loadding-incart').hide();
-                return false;
-            },
-            cache: false,
-            contentType: false,
-            processData: false
-        });
-    }
+    $('.selected-payment-mobi').addClass('disabledbutton');
+    setTimeout(function(){
+        if(action.indexOf(url_presmobileapp) == -1) {
+            $('#pay-with-'+id).trigger('click');
+        } else {
+            $.ajax({
+                url: action,
+                type: "GET",
+                async: false,
+                success: function (data) {
+                    PresMobibamobileroutesback('#checkoutsuccess:'+data);
+                    $('.PresMobileicon-loadding-incart').hide();
+                    return false;
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        }
+    }, 1000);
 }
 function PresMobibaReOrder(element){
     var id_order = $(element).attr('id-order');

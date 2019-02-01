@@ -197,7 +197,8 @@
   <script type="text/javascript" src="{$baseDir|escape:'htmlall':'UTF-8'}modules/stripe_official/views/js/jquery.the-modal.js" ></script>
 {/if}
 {/if}
-
+{if $install_stripe_official === true}
 
   <link rel="stylesheet" href="{$baseDir|escape:'htmlall':'UTF-8'}/modules/stripe_official/views/css/front.css" type="text/css" media="all">
   <link rel="stylesheet" href="{$baseDir|escape:'htmlall':'UTF-8'}/modules/stripe_official/views/css/the-modal.css" type="text/css" media="all">
+{/if}

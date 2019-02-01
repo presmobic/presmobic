@@ -77,7 +77,9 @@ if (!empty($delivery_option_list)) {
         }
     }
 }
-$price_shipping = $result[$id_carrier]['total_price_without_tax'];
+$id_carrier_tr = $id_carrier.',';
+$price_shipping = $result[$id_carrier_tr]['total_price_without_tax'];
+
 $discount = $cart_r->getCartRules();
 $discount_new = array();
 $price_coupon = 0;

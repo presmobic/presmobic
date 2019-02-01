@@ -25,7 +25,7 @@ class PresMobileApp extends Module
     {
         $this->name = "presmobileapp";
         $this->tab = "mobile";
-        $this->version = "1.0.0";
+        $this->version = "1.0.2";
         $this->author = "buy-addons";
         $this->need_instance = 0;
         $this->secure_key = Tools::encrypt($this->name);
@@ -201,6 +201,7 @@ class PresMobileApp extends Module
             }
         }
         $this->installTab('AdminPressMobileApp', 'PresMobic');
+        $this->installTabSub('AdminPresMobicConfig', 'Configure PresMobic', 'AdminPressMobileApp');
         if (parent::install() == false) {
             return false;
         }
@@ -215,7 +216,7 @@ class PresMobileApp extends Module
                 $this->preInstallHook($value);
             }
         }
-        Configuration::updateValue('cacheapp', '5', false, '', null);
+        Configuration::updateValue('cacheapp', '720', false, '', null);
         Configuration::updateValue('cache_add', '1', false, '', null);
         $this->registerHook('OrderConfirmation');
         $this->registerHook('presmobicDisplayAfterLogo');
@@ -234,6 +235,10 @@ class PresMobileApp extends Module
         }
         $tab = new Tab((int) Tab::getIdFromClassName('AdminPressMobileApp'));
         $tab->delete();
+        $tab = new Tab((int) Tab::getIdFromClassName('AdminPresMobicConfig'));
+        $tab->delete();
+        // $tab = new Tab((int) Tab::getIdFromClassName('AdminPresMobicConfig'));
+        // $tab->delete();
         $db = Db::getInstance(_PS_USE_SQL_SLAVE_);
         $sql = "DROP TABLE IF EXISTS " . _DB_PREFIX_ . "ba_mobileapp_block";
         $sql1 = "DROP TABLE IF EXISTS " . _DB_PREFIX_ . "ba_mobic_cache";
@@ -1006,7 +1011,7 @@ class PresMobileApp extends Module
         }
         if (Tools::isSubmit('submitcache')) {
             $timecache = (int)Tools::getValue('timecache');
-            if ($timecache == 0 || empty($timecache)) {
+            if ($timecache == 0 || $timecache == false) {
                 $html .= $this->displayError(" Cache time is invalid");
             } else {
                 $cache_add = (int)Tools::getValue('cache_add');
@@ -1357,8 +1362,7 @@ class PresMobileApp extends Module
         $tab->active = 1;
         $tab->class_name = $className;
         $tab->name = array();
-        $tabParentName = 'SELL';
-        $tab->position = 6;
+        $tab->position = 5;
         foreach (Language::getLanguages(true) as $lang) {
             $tab->name[$lang['id_lang']] = $tabName;
         }
@@ -1369,6 +1373,27 @@ class PresMobileApp extends Module
         }
         if (Tools::version_compare(_PS_VERSION_, '1.7', '>=')) {
             $tab->icon = 'stay_current_portrait';
+        }
+        $tab->module = $this->name;
+        $tab->add();
+        return $tab->save();
+    }
+    //cài đặt sub tab menu
+    public function installTabSub($className, $tabName, $tabParentName = false)
+    {
+        $tab = new Tab();
+        $tab->active = 1;
+        $tab->class_name = $className;
+        $tab->name = array();
+        $tabParentName = 'AdminPressMobileApp';
+        $tab->position = 5;
+        foreach (Language::getLanguages(true) as $lang) {
+            $tab->name[$lang['id_lang']] = $tabName;
+        }
+        if ($tabParentName) {
+            $tab->id_parent = (int) Tab::getIdFromClassName($tabParentName);
+        } else {
+            $tab->id_parent = 0;
         }
         $tab->module = $this->name;
         $tab->add();

@@ -45,7 +45,7 @@ class BaProduct extends PresMobileApp
         $url_fodel = _PS_MODULE_DIR_;
         include_once($url_fodel.'presmobileapp/includes/Presmobic-core.php');
         $core = new BaCore();
-        $product_a = new Product($id_product);
+        $product_a = new Product($id_product, false, $id_lang, $id_shop);
         $cache_add = Configuration::get('cache_add');
         if ($cache_add == 1) {
             $check_cache = $core->presMobicheckcache($controller.':'.$id_product);
@@ -61,7 +61,6 @@ class BaProduct extends PresMobileApp
                 die;
             }
         }
-        $check_cache;
         $active_wishlist = 0;
         $active_favorite = 0;
         $sql_where_product = " AND p.`id_product` IN (".pSQL($id_product).")";
